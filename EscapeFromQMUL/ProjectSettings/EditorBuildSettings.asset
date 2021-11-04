@@ -8,10 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/erdemaksu.unity
     guid: 965844f147d733742a0ee5cc89c0f2ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/Scenes/dipomaster.unity
     guid: f58fab1a9798cf945a3ce65a70ef7c1e
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 28406640e4f8dd844b1297a25d01cd13
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 73bb231eeb12736429883469a2874b3e
   m_configObjects: {}
