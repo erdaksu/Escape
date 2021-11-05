@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravityMultiplier = 1f;
     public Vector3 move;
     public bool isGroundednow=false;
-    public float fallMult=2.5f, lowJumpMulti=2f;
+    public float fallMult=2.5f, lowJumpMulti=2f,currentH=0,jumpH=0;
 
     private void Start()
     {
@@ -26,14 +26,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
-        Jump();
-        
+        clampHeight();
+
+
     }
 
     private void FixedUpdate()
     {
 
-      
+      Jump();
     }
 
     void Movement()
@@ -48,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGroundednow = true;
+            currentH = transform.position.y;
+
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -55,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGroundednow = false;
+            jumpH = currentH + jumpHeight;
         }
     }
 
@@ -77,5 +81,13 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMulti - 1) * Time.deltaTime;
 
         }
+
+    }
+
+
+    void clampHeight()
+    {
+        if(transform.position.y> jumpH)
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMult - 1) * Time.deltaTime;
     }
 }
