@@ -68,7 +68,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButton("Jump") && isGroundednow)
         {
-            rb.AddForce(Vector3.up * jumpHeight * gravityMultiplier, ForceMode.Impulse);
+            float jumpForce = Mathf.Sqrt(jumpHeight * -2 * (Physics2D.gravity.y * rb.mass));
+
+            rb.AddForce( Vector3.up *jumpForce,ForceMode.Impulse);
 
         }
 
