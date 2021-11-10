@@ -5,22 +5,23 @@ using UnityEngine;
 public class AI : MonoBehaviour
 {
     public Transform[] targets;
-    public GameObject vision;
+    public GameObject vision,GM;
     public float speed = 1;
     public int i=0,j=0;
-   public  bool playerNotFound;
+   public  bool playerNotFound,patrol=false;
     // Start is called before the first frame update
     void Start()
     {
         foreach (Transform child in targets)
             i++;
-        playerNotFound = true;
+        //playerNotFound = true;
+        GM = GameObject.FindGameObjectWithTag("GM");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerNotFound)
+        if(patrol&&playerNotFound)
         logicNpc();
     }
 
@@ -30,7 +31,9 @@ public class AI : MonoBehaviour
         {
             playerNotFound = false;
             Debug.LogWarning(playerNotFound);
-            
+            transform.LookAt(other.gameObject.transform);
+            GM.GetComponent<GameManager>().caught = true;
+
         }
     }
 
