@@ -18,15 +18,22 @@ public class GameManager : MonoBehaviour
     {
         if (caught)
         {
+            Time.timeScale = 0;
             foreach (Transform child in canvas.transform)
             {
                 child.gameObject.SetActive(true);
+                
+            }
+            if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump"))
+            {
+                Restart();
             }
         }
     }
 
-    public void Restart()
+    public void Restart()//restart level
     {
+        Time.timeScale = 1;
         Scene scene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(scene.name);
     }

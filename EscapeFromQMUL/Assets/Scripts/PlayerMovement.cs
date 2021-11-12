@@ -41,7 +41,18 @@ public class PlayerMovement : MonoBehaviour
     {
         float curSpeed = speed * Input.GetAxis("Horizontal"); 
         move =(Vector3.right * curSpeed);
-        transform.Translate(move);
+        //transform.Translate(move);
+        if (Input.GetAxis("Horizontal") < 0)//flip the player according to its direction
+        {
+            transform.rotation = new Quaternion(0, 180, 0, 0);
+            transform.Translate(move*-1);
+        }
+        else if (Input.GetAxis("Horizontal") > 0)
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+            transform.Translate(move);
+        }
+
     }
 
     private void OnCollisionStay(Collision collision)
